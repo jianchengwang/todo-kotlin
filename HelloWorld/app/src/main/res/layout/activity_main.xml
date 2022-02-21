@@ -35,7 +35,8 @@
             android:lineSpacingMultiplier="1.2"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:textAlignment="left"
-            tools:text="@string/bio" />
+            android:textAlignment="textStart"
+            android:text="@string/bio" />
     </ScrollView>
+
 </LinearLayout>

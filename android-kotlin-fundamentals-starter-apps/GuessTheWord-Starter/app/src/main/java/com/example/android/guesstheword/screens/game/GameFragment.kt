@@ -56,25 +56,30 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
 
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
-
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
-
+//        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+//            binding.scoreText.text = newScore.toString()
+//        })
+//
+//        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
+//            binding.wordText.text = newWord
+//        })
+//
         viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished  ->
             if (hasFinished) {
                 gameFinished()
             }
         })
 
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener {
-            onEndGame()
-        }
+//        binding.correctButton.setOnClickListener { onCorrect() }
+//        binding.skipButton.setOnClickListener { onSkip() }
+//        binding.endGameButton.setOnClickListener {
+//            onEndGame()
+//        }
+
+        // Set the viewmodel for databinding - this allows the bound layout access
+        // to all the data in the ViewModel
+        binding.gameViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
 
     }
@@ -82,12 +87,12 @@ class GameFragment : Fragment() {
     /** Methods for buttons presses **/
 
     private fun onSkip() {
-        viewModel.skip()
+        viewModel.onSkip()
 //        updateText()
     }
 
     private fun onCorrect() {
-        viewModel.correct()
+        viewModel.onCorrect()
 //        updateText()
     }
 
